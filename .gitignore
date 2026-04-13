@@ -1,0 +1,17 @@
+# Backend
+backend/.gradle/
+backend/build/
+backend/*.jar
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env*.local
+
+# IntelliJ
+.idea/
+*.iml
+
+# Misc
+.DS_Store
+.env
