@@ -1,7 +1,7 @@
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/loandb
-    username: mjÄu44
+    username: mjau44
     password: maEiTea33
   jpa:
     hibernate:
@@ -32,3 +32,7 @@ management:
     web:
       exposure:
         include: health
+
+logging:
+  level:
+    liquibase: DEBUG

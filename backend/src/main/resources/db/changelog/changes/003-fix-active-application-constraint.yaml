@@ -7,7 +7,7 @@ databaseChangeLog:
             tableName: loan_application
             constraintName: uq_one_active_application
         - sql:
-            sql: >
+            sql: |
               CREATE UNIQUE INDEX uq_one_active_application
               ON loan_application (personal_code)
-              WHERE status NOT IN ('APPROVED', 'REJECTED');
+              WHERE status NOT IN ('APPROVED', 'REJECTED')
