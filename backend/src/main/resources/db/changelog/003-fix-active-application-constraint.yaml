@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-fix-active-application-constraint
+      author: siims
+      changes:
+        - dropUniqueConstraint:
+            tableName: loan_application
+            constraintName: uq_one_active_application
+        - sql:
+            sql: >
+              CREATE UNIQUE INDEX uq_one_active_application
+              ON loan_application (personal_code)
+              WHERE status NOT IN ('APPROVED', 'REJECTED');
