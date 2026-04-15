@@ -1,12 +1,15 @@
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/loandb
-    username: kasutaja
-    password: parool
+    username: mjÄu44
+    password: maEiTea33
   jpa:
     hibernate:
       ddl-auto: validate
     show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.yaml
 
@@ -23,3 +26,9 @@ springdoc:
 
 server:
   port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
