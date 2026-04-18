@@ -70,7 +70,9 @@ public class PaymentScheduleService {
     }
 
     private BigDecimal calculateMonthlyPayment(BigDecimal principal, BigDecimal monthlyRate, int termMonths) {
-        // M = P * r * (1+r)^n / ((1+r)^n - 1)
+        if (monthlyRate.compareTo(BigDecimal.ZERO) == 0) {
+            return principal.divide(BigDecimal.valueOf(termMonths), SCALE, RoundingMode.HALF_UP);
+        }
         BigDecimal onePlusRate = BigDecimal.ONE.add(monthlyRate);
         BigDecimal pow = onePlusRate.pow(termMonths, MC);
         BigDecimal numerator = principal.multiply(monthlyRate, MC).multiply(pow, MC);

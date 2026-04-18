@@ -14,9 +14,10 @@ class SocialSecurityNumberServiceTest {
     @ValueSource(strings = {
             "37605030299",  // male 1976
             "50001011352",   // male 2000
-            "16001010006",  // male 1800s
             "49403136515",  // female 1994
-            "26001010002"   // female 1800s
+            "38001085718",  // male 1980
+            "49002124226",  // female 1990
+            "51001091072"   // male 2010
     })
     void isValid_validCodes_returnsTrue(String code) {
         assertThat(SocialSecurityNumberService.isValid(code)).isTrue();
