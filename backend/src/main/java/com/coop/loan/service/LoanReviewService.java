@@ -39,4 +39,9 @@ public class LoanReviewService {
         }
         return loan;
     }
+
+    public Loan getById(UUID loanId) {
+        return loanRepository.findById(loanId)
+                .orElseThrow(() -> new IllegalArgumentException("Loan not found: " + loanId));
+    }
 }
