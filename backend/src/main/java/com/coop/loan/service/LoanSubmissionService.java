@@ -25,6 +25,10 @@ public class LoanSubmissionService {
             throw new IllegalStateException("Customer already has an active loan application");
         }
 
+        if (!SocialSecurityNumberService.isValid(loan.getPersonalCode())) {
+            throw new IllegalArgumentException("Invalid Estonian personal code");
+        }
+
         int age = SocialSecurityNumberService.extractAge(loan.getPersonalCode());
 
         if (age > loanProperties.getMaxCustomerAge()) {
