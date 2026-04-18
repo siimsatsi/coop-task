@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -25,6 +26,9 @@ public class LoanReviewService {
 
     @Transactional
     public Loan reject(UUID loanId, RejectionReason reason) {
+        if (reason == RejectionReason.CUSTOMER_TOO_OLD) {
+            throw new IllegalArgumentException("CUSTOMER_TOO_OLD is set automatically and cannot be used for manual rejection");
+        }
         Loan loan = getInReview(loanId);
         loan.setStatus(LoanStatus.REJECTED);
         loan.setRejectionReason(reason);
@@ -43,5 +47,9 @@ public class LoanReviewService {
     public Loan getById(UUID loanId) {
         return loanRepository.findById(loanId)
                 .orElseThrow(() -> new IllegalArgumentException("Loan not found: " + loanId));
+    }
+
+    public List<Loan> getAllInReview() {
+        return loanRepository.findByStatus(LoanStatus.IN_REVIEW);
     }
 }

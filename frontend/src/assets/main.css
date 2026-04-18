@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=JetBrains+Mono:wght@400;500&family=Instrument+Sans:wght@400;500&display=swap');
+
+:root {
+  --ink: #1a1814;
+  --paper: #f5f0e8;
+  --muted: #8a8478;
+  --rule: #d4cfc4;
+  --accent: #c8860a;
+  --accent-light: #f5e6c8;
+  --danger: #8b2020;
+  --success: #1a5c2e;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Instrument Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; }
+
+input, select, textarea {
+  font-family: var(--font-body);
+  font-size: 14px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--rule);
+  padding: 6px 0;
+  width: 100%;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s;
+}
+input:focus, select:focus { border-bottom-color: var(--accent); }
+input::placeholder { color: var(--muted); }
+
+select { cursor: pointer; }
+select option { background: var(--paper); }
+
+button {
+  font-family: var(--font-body);
+  font-size: 13px;
+  cursor: pointer;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  padding: 8px 24px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.15s;
+}
+button:hover { background: var(--ink); color: var(--paper); }
+button.primary { background: var(--ink); color: var(--paper); }
+button.primary:hover { background: var(--accent); border-color: var(--accent); }
+button.danger { border-color: var(--danger); color: var(--danger); }
+button.danger:hover { background: var(--danger); color: var(--paper); }
+button.success { border-color: var(--success); color: var(--success); }
+button.success:hover { background: var(--success); color: var(--paper); }
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.mono { font-family: var(--font-mono); }
+.muted { color: var(--muted); font-size: 13px; }
+.rule { border: none; border-top: 1px solid var(--rule); margin: 2rem 0; }
+.error-msg { color: var(--danger); font-size: 13px; font-family: var(--font-mono); margin-top: 4px; }
