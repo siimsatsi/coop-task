@@ -77,7 +77,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import {onMounted, ref} from 'vue'
 
 interface LoanResult {
   id: string
@@ -109,6 +109,16 @@ const form = ref<FormData>({
   loanAmount: null, termMonths: null,
   interestMargin: null, baseInterestRate: null
 })
+
+onMounted(async () => {
+  const res = await fetch('http://localhost:8080/api/parameters')
+  if (res.ok) {
+    const params = await res.json()
+    const euribor = params.find((p: { key: string }) => p.key === 'euribor_6m')
+    if (euribor) form.value.baseInterestRate = euribor.value
+  }
+})
+
 const loading = ref(false)
 const error = ref('')
 const result = ref<LoanResult | null>(null)

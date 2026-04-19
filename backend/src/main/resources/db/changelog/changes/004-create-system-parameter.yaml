@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:
+      id: 004-create-system-parameter
+      author: siims
+      changes:
+        - createTable:
+            tableName: system_parameter
+            columns:
+              - column:
+                  name: key
+                  type: varchar(50)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: value
+                  type: decimal(10,3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(255)
+        - insert:
+            tableName: system_parameter
+            columns:
+              - column:
+                  name: key
+                  value: euribor_6m
+              - column:
+                  name: value
+                  valueNumeric: 3.840
+              - column:
+                  name: description
+                  value: 6-month Euribor base interest rate
+        - insert:
+            tableName: system_parameter
+            columns:
+              - column:
+                  name: key
+                  value: max_customer_age
+              - column:
+                  name: value
+                  valueNumeric: 70
+              - column:
+                  name: description
+                  value: Maximum customer age for loan eligibility

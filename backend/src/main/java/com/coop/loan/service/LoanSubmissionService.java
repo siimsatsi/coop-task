@@ -17,7 +17,7 @@ public class LoanSubmissionService {
 
     private final LoanRepository loanRepository;
     private final PaymentScheduleService paymentScheduleService;
-    private final LoanProperties loanProperties;
+    private final SystemParameterService systemParameterService;
 
     @Transactional
     public Loan submit(Loan loan) {
@@ -31,7 +31,7 @@ public class LoanSubmissionService {
 
         int age = SocialSecurityNumberService.extractAge(loan.getPersonalCode());
 
-        if (age > loanProperties.getMaxCustomerAge()) {
+        if (age > systemParameterService.getMaxCustomerAge()) {
             loan.setStatus(LoanStatus.REJECTED);
             loan.setRejectionReason(RejectionReason.CUSTOMER_TOO_OLD);
             return loanRepository.save(loan);
